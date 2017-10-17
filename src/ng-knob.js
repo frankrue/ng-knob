@@ -99,12 +99,12 @@
       //interactInnerRadius = outerRadius - this.options.trackWidth;
     }
     if(this.options.bgColor) {
-		if(this.options.bgFull){
-			this.bgArc = this.createArc(0, outerRadius, 0, Math.PI*2);
-		}
-		else{
-			this.bgArc = this.createArc(0, outerRadius, startAngle, endAngle);
-		}
+    if(this.options.bgFull){
+      this.bgArc = this.createArc(0, outerRadius, 0, Math.PI*2);
+    }
+    else{
+      this.bgArc = this.createArc(0, outerRadius, startAngle, endAngle);
+    }
     }
     if(this.options.skin.type === 'tron') {
       trackOuterRadius = trackOuterRadius - this.options.skin.width - this.options.skin.spaceWidth;
@@ -124,9 +124,9 @@
    */
   Knob.prototype.drawArcs = function(clickInteraction, dragBehavior) {
     var svg = d3.select(this.element)
-    .append('svg')
-    .attr("width", this.options.size)
-    .attr("height", this.options.size);
+      .append('svg')
+      .attr("width", this.options.size)
+      .attr("height", this.options.size);
 
     if(this.options.bgColor) {
       this.drawArc(svg, this.bgArc, 'bgArc', { "fill": this.options.bgColor });
@@ -143,6 +143,9 @@
       var v = this.value;
       if (typeof this.options.inputFormatter === "function"){
           v = this.options.inputFormatter(v);
+      }
+      if (this.options.svgData !== '') {
+        svg.append(this.options.svgData);
       }
       svg.append('text')
       .attr('id', 'text')
@@ -374,6 +377,7 @@
       link: function (scope, element) {
         scope.value = scope.value || 0;
         var defaultOptions = {
+          svgData: '',
           skin: {
             type: 'simple',
             width: 10,
@@ -399,7 +403,7 @@
           prevBarColor: "rgba(0,0,0,0)",
           textColor: '#222',
           barCap: 0,
-		  trackCap: 0,
+          trackCap: 0,
           fontSize: 'auto',
           subText: {
             enabled: false,
@@ -408,7 +412,7 @@
             font: "auto"
           },
           bgColor: '',
-		  bgFull: false,
+          bgFull: false,
           scale: {
             enabled: false,
             type: 'lines',
@@ -423,7 +427,7 @@
           min: 0,
           max: 100,
           dynamicOptions: false
-				};
+        };
         scope.options = angular.merge(defaultOptions, scope.options);
         var knob = new ui.Knob(element[0], scope.value, scope.options);
 
