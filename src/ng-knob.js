@@ -114,9 +114,14 @@
       this.hoopArc = this.createArc(outerRadius - this.options.skin.width, outerRadius, startAngle, endAngle);
     }
 
+    var valueStartAngle = startAngle;
+    if (this.options.lowValue !== null) {
+      valueStartAngle = this.options.lowValue;
+    }
+
     this.trackArc = this.createArc(trackInnerRadius, trackOuterRadius, startAngle, endAngle, this.options.trackCap);
     this.changeArc = this.createArc(changeInnerRadius, changeOuterRadius, startAngle, startAngle, this.options.barCap);
-    this.valueArc = this.createArc(valueInnerRadius, valueOuterRadius, startAngle, startAngle, this.options.barCap);
+    this.valueArc = this.createArc(valueInnerRadius, valueOuterRadius, valueStartAngle, valueStartAngle, this.options.barCap);
     this.interactArc = this.createArc(interactInnerRadius, interactOuterRadius, startAngle, endAngle);
   };
   /**
@@ -252,9 +257,6 @@
       this.changeElem = this.drawArc(svg, this.changeArc, 'changeArc', { "fill-opacity": 0 });
     }
     this.valueElem = this.drawArc(svg, this.valueArc, 'valueArc', { "fill": this.options.barColor });
-    if (this.options.lowValue !== null) {
-      this.valueElem.startAngle(this.options.lowValue);
-    }
     var cursor = "pointer";
     if(this.options.readOnly) {
       cursor = "default";
