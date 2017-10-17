@@ -116,7 +116,7 @@
 
     var valueStartAngle = startAngle;
     if (this.options.lowValue !== null) {
-      valueStartAngle = this.options.lowValue;
+      valueStartAngle = this.valueToRadians(this.options.lowValue, this.options.max, this.options.endAngle, this.options.startAngle, this.options.min);
     }
 
     this.trackArc = this.createArc(trackInnerRadius, trackOuterRadius, startAngle, endAngle, this.options.trackCap);
