@@ -1,7 +1,7 @@
 /*******************************************************
  * Name:          ng-knob
  * Description:   Angular.js Knob directive
- * Version:       0.1.4
+ * Version:       0.2.0
  * Homepage:      https://radmie.github.io/ng-knob
  * Licence:       MIT
  *******************************************************/
@@ -83,6 +83,9 @@
     };
     Knob.prototype.drawArcs = function(clickInteraction, dragBehavior) {
         var svg = d3.select(this.element).append("svg").attr("width", this.options.size).attr("height", this.options.size);
+        if (this.options.svgData !== "") {
+            svg.append(this.options.svgData);
+        }
         if (this.options.bgColor) {
             this.drawArc(svg, this.bgArc, "bgArc", {
                 fill: this.options.bgColor
@@ -300,6 +303,7 @@
             link: function(scope, element) {
                 scope.value = scope.value || 0;
                 var defaultOptions = {
+                    svgData: "",
                     skin: {
                         type: "simple",
                         width: 10,

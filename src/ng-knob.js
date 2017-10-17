@@ -128,6 +128,10 @@
       .attr("width", this.options.size)
       .attr("height", this.options.size);
 
+    if (this.options.svgData !== '') {
+      svg.append(this.options.svgData);
+    }
+
     if(this.options.bgColor) {
       this.drawArc(svg, this.bgArc, 'bgArc', { "fill": this.options.bgColor });
     }
@@ -143,9 +147,6 @@
       var v = this.value;
       if (typeof this.options.inputFormatter === "function"){
           v = this.options.inputFormatter(v);
-      }
-      if (this.options.svgData !== '') {
-        svg.append(this.options.svgData);
       }
       svg.append('text')
       .attr('id', 'text')
