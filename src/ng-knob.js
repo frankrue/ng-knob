@@ -252,6 +252,9 @@
       this.changeElem = this.drawArc(svg, this.changeArc, 'changeArc', { "fill-opacity": 0 });
     }
     this.valueElem = this.drawArc(svg, this.valueArc, 'valueArc', { "fill": this.options.barColor });
+    if (this.options.lowValue !== null) {
+      this.valueElem.startAngle(this.options.lowValue);
+    }
     var cursor = "pointer";
     if(this.options.readOnly) {
       cursor = "default";
@@ -379,6 +382,7 @@
         scope.value = scope.value || 0;
         var defaultOptions = {
           svgData: '',
+          lowValue: null,
           skin: {
             type: 'simple',
             width: 10,
