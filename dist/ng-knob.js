@@ -84,7 +84,7 @@
     Knob.prototype.drawArcs = function(clickInteraction, dragBehavior) {
         var svg = d3.select(this.element).append("svg").attr("width", this.options.size).attr("height", this.options.size);
         if (this.options.svgData !== "") {
-            svg.append(this.options.svgData);
+            svg.html(this.options.svgData);
         }
         if (this.options.bgColor) {
             this.drawArc(svg, this.bgArc, "bgArc", {

@@ -129,7 +129,7 @@
       .attr("height", this.options.size);
 
     if (this.options.svgData !== '') {
-      svg.append(this.options.svgData);
+      svg.html(this.options.svgData);
     }
 
     if(this.options.bgColor) {
