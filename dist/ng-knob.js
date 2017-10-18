@@ -263,6 +263,7 @@
                 that.valueArc.endAngle(that.valueToRadians(that.value, that.options.max, that.options.endAngle, that.options.startAngle, that.options.min));
                 that.valueElem.attr("d", that.valueArc);
                 if (isFinal) {
+                    update(that.value, true);
                     that.changeArc.endAngle(that.valueToRadians(that.value, that.options.max, that.options.endAngle, that.options.startAngle, that.options.min));
                     that.changeElem.attr("d", that.changeArc);
                 }
@@ -382,8 +383,8 @@
                     }, true);
                 }
                 var drawKnob = function() {
-                    knob.draw(function(value) {
-                        if (scope.change) {
+                    knob.draw(function(value, isFinal) {
+                        if (isFinal === true) {
                             scope.change({
                                 value: value
                             });
