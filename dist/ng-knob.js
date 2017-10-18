@@ -303,7 +303,7 @@
             scope: {
                 value: "=",
                 options: "=",
-                onChange: "&"
+                change: "&onChange"
             },
             link: function(scope, element) {
                 scope.value = scope.value || 0;
@@ -383,8 +383,10 @@
                 }
                 var drawKnob = function() {
                     knob.draw(function(value) {
-                        if (scope.onChange) {
-                            scope.onChange(value);
+                        if (scope.change) {
+                            scope.change({
+                                value: value
+                            });
                         }
                         scope.$apply(function() {
                             scope.value = value;
