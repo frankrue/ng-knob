@@ -378,7 +378,8 @@
       restrict: 'E',
       scope: {
         value: '=',
-        options: '='
+        options: '=',
+        onChange: '&'
       },
       link: function (scope, element) {
         scope.value = scope.value || 0;
@@ -459,6 +460,9 @@
 
         var drawKnob = function(){
           knob.draw(function(value) {
+            if (scope.onChange) {
+              scope.onChange(value);
+            }
             scope.$apply(function() {
               scope.value = value;
             });

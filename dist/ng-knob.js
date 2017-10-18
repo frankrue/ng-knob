@@ -1,7 +1,7 @@
 /*******************************************************
  * Name:          ng-knob
  * Description:   Angular.js Knob directive
- * Version:       0.2.0
+ * Version:       0.2.1
  * Homepage:      https://radmie.github.io/ng-knob
  * Licence:       MIT
  *******************************************************/
@@ -302,7 +302,8 @@
             restrict: "E",
             scope: {
                 value: "=",
-                options: "="
+                options: "=",
+                onChange: "&"
             },
             link: function(scope, element) {
                 scope.value = scope.value || 0;
@@ -382,6 +383,9 @@
                 }
                 var drawKnob = function() {
                     knob.draw(function(value) {
+                        if (scope.onChange) {
+                            scope.onChange(value);
+                        }
                         scope.$apply(function() {
                             scope.value = value;
                         });
